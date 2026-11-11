@@ -593,13 +593,13 @@
 
                 <div class="soundtrack-player">
                     <audio id="bgm-audio" controls loop preload="auto" aria-label="Birthday background music">
-                        <source src="assets/birthday-soundtrack.mp3" type="audio/mpeg">
+                        <source src="birthday-soundtrack.mp3" type="audio/mpeg">
                         Your browser does not support audio playback.
                     </audio>
                 </div>
                 <p id="music-status" class="mt-4 text-center text-sm text-gray-500" aria-live="polite">Enable music to start the birthday soundtrack.</p>
                 <p class="mt-2 text-center text-sm text-gray-500">
-                    <a href="assets/birthday-soundtrack.mp3" target="_blank" rel="noopener noreferrer" class="text-deepRose underline hover:text-pink-700">Open the birthday soundtrack</a>
+                    <a href="birthday-soundtrack.mp3" target="_blank" rel="noopener noreferrer" class="text-deepRose underline hover:text-pink-700">Open the birthday soundtrack</a>
                 </p>
             </div>
         </section>
@@ -955,7 +955,7 @@
         bgmAudio.addEventListener('error', () => {
             isPlaying = false;
             updateMusicControls();
-            document.getElementById('music-status').textContent = 'Could not load the soundtrack. Check that assets/birthday-soundtrack.mp3 is included when publishing the site.';
+            document.getElementById('music-status').textContent = 'Could not load the soundtrack. Check that birthday-soundtrack.mp3 is included next to this page when publishing the site.';
         });
         function celebrate(options) {
             if (typeof confetti === 'function') {
