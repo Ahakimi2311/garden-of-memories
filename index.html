@@ -599,7 +599,7 @@
                 </div>
                 <p id="music-status" class="mt-4 text-center text-sm text-gray-500" aria-live="polite">Enable music to start the birthday soundtrack.</p>
                 <p class="mt-2 text-center text-sm text-gray-500">
-                    <a href="https://drive.google.com/file/d/1yJ-ThuF0YoCt575rtvmiORVFQ_KzgByA/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="text-deepRose underline hover:text-pink-700">Open the soundtrack in Google Drive</a>
+                    <a href="assets/birthday-soundtrack.mp3" target="_blank" rel="noopener noreferrer" class="text-deepRose underline hover:text-pink-700">Open the birthday soundtrack</a>
                 </p>
             </div>
         </section>
@@ -955,7 +955,7 @@
         bgmAudio.addEventListener('error', () => {
             isPlaying = false;
             updateMusicControls();
-            document.getElementById('music-status').textContent = 'Google Drive denied access to the audio. Set General access to “Anyone with the link” (Viewer), then reload this page.';
+            document.getElementById('music-status').textContent = 'Could not load the soundtrack. Check that assets/birthday-soundtrack.mp3 is included when publishing the site.';
         });
         function celebrate(options) {
             if (typeof confetti === 'function') {
