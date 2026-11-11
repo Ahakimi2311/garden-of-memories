@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Garden of Memories — Birthday Edition for Iman Nabeela</title>
+    <!-- Tailwind CSS for modern styling and responsive design -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        roseBlush: '#fbe4e9',
+                        creamSoft: '#fcf8f2',
+                        lavenderSoft: '#ece5f2',
+                        sageGreen: '#d8e2dc',
+                        deepRose: '#d4839c',
+                        romanticText: '#4a3b4c'
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        handwriting: ['Caveat', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Playfair Display, Inter, Caveat -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome for romantic icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti for celebrations -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcf8f2;
+            color: #4a3b4c;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        .font-hand {
+            font-family: 'Caveat', cursive;
+        }
+        /* Custom Glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 10px 30px rgba(212, 131, 156, 0.15);
+        }
+        .glass-nav {
+            background: rgba(252, 248, 242, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(216, 226, 220, 0.5);
+        }
+        /* Floating Petals and Butterflies animation */
+        @keyframes floatPetal {
+            0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(110vh) translateX(50px) rotate(360deg); opacity: 0; }
+        }
+        .floating-petal {
+            position: fixed;
+            background: #fbe4e9;
+            border-radius: 150% 0 150% 0;
+            pointer-events: none;
+            z-index: 1;
+            animation: floatPetal linear infinite;
+        }
+        /* Pulse gentle */
+        @keyframes gentlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .pulse-gentle {
+            animation: gentlePulse 3s infinite ease-in-out;
+        }
+        .flower-bloomed .flower-icon {
+            transform: scale(1.2) rotate(-8deg);
+        }
+        .music-consent {
+            position: fixed;
+            inset: 0;
+            z-index: 70;
+            display: grid;
+            place-items: center;
+            padding: 1rem;
+            background: rgba(36, 24, 37, .62);
+            backdrop-filter: blur(7px);
+            -webkit-backdrop-filter: blur(7px);
+        }
+        .music-consent.hidden {
+            display: none;
+        }
+        .music-consent-card {
+            width: min(100%, 430px);
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,.8);
+            border-radius: 1.5rem;
+            background: #fffaf8;
+            text-align: center;
+            box-shadow: 0 24px 80px rgba(27, 16, 29, .3);
+        }
+        .soundtrack-player {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 1rem;
+            background: rgba(255,255,255,.82);
+            box-shadow: inset 0 2px 8px rgba(74, 59, 76, .08);
+        }
+        .soundtrack-player audio {
+            display: block;
+            width: 100%;
+        }
+        .flower-surprise {
+            position: fixed;
+            inset: 0;
+            z-index: 60;
+            display: grid;
+            place-items: center;
+            padding: 1.25rem;
+            background: rgba(36, 24, 37, .68);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            animation: flower-surprise-pop 700ms cubic-bezier(.2, 1.4, .45, 1) both;
+        }
+        .flower-surprise.hidden {
+            display: none;
+        }
+        .flower-surprise-card {
+            position: relative;
+            width: min(calc((100dvh - 5.5rem) * 9 / 16 + 1.5rem), calc(100vw - 2.5rem), 430px);
+            max-height: calc(100dvh - 2.5rem);
+            padding: .75rem;
+            border: 1px solid rgba(255,255,255,.8);
+            border-radius: 1.5rem;
+            background: #fffaf8;
+            box-shadow: 0 24px 80px rgba(27, 16, 29, .35);
+        }
+        .flower-surprise img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            max-height: calc(100dvh - 5.5rem);
+            object-fit: contain;
+            border-radius: 1rem;
+            background: #fbe4e9;
+        }
+        .flower-surprise-video-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            overflow: hidden;
+            border-radius: 1rem;
+            background: #000;
+        }
+        .flower-surprise-video {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -39.5%;
+            width: 180%;
+            height: 100%;
+            border: 0;
+            background: #000;
+        }
+        .finale-surprise-card {
+            width: min(calc(75dvh * 9 / 16 + 1.5rem), calc(75vw + 1.5rem));
+            max-height: calc(75dvh + 1.5rem);
+        }
+        .flower-surprise-close {
+            position: absolute;
+            z-index: 2;
+            top: 1.1rem;
+            right: 1.1rem;
+            display: grid;
+            place-items: center;
+            width: 2.75rem;
+            height: 2.75rem;
+            border: 1px solid rgba(255,255,255,.8);
+            border-radius: 999px;
+            background: rgba(255,255,255,.94);
+            color: #a64e6c;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 16px rgba(74, 59, 76, .2);
+            cursor: pointer;
+        }
+        @keyframes flower-surprise-pop {
+            0% { opacity: 0; transform: scale(.55) translateY(28px) rotate(-4deg); }
+            70% { opacity: 1; transform: scale(1.04) translateY(-4px) rotate(1deg); }
+            100% { opacity: 1; transform: scale(1) translateY(0) rotate(0); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .flower-surprise {
+                animation: none;
+            }
+        }
+        /* Envelope Opening Animation */
+        .envelope-flap {
+            transition: transform 0.8s ease-in-out;
+            transform-origin: top;
+        }
+        .envelope.open .envelope-flap {
+            transform: rotateX(180deg);
+        }
+        .letter-slide {
+            transition: transform 0.8s ease-in-out 0.3s, opacity 0.8s ease-in-out 0.3s;
+        }
+        .envelope.open .letter-slide {
+            transform: translateY(-80px);
+            opacity: 1;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fcf8f2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d8e2dc;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4839c;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen">
+
+    <div id="music-consent" class="music-consent" role="dialog" aria-modal="true" aria-labelledby="music-consent-title">
+        <div class="music-consent-card">
+            <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-rose-100 text-deepRose text-2xl">
+                <i class="fa-solid fa-music" aria-hidden="true"></i>
+            </div>
+            <h2 id="music-consent-title" class="font-serif text-2xl font-bold text-romanticText">A little music?</h2>
+            <p class="mt-3 text-sm leading-relaxed text-gray-600">Browsers require a click before music can play. Enable the birthday soundtrack?</p>
+            <div class="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+                <button type="button" onclick="chooseMusic(true)" class="rounded-full bg-deepRose px-6 py-3 font-medium text-white shadow-md transition-colors hover:bg-pink-600">Enable music</button>
+                <button type="button" onclick="chooseMusic(false)" class="rounded-full border border-rose-200 px-6 py-3 font-medium text-deepRose transition-colors hover:bg-rose-50">Continue without music</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Petals & Butterflies Container -->
+    <div id="nature-particles" class="absolute inset-0 overflow-hidden pointer-events-none z-0"></div>
+
+    <!-- 1. OPENING EXPERIENCE / HERO SECTION -->
+    <section id="opening-section" class="relative min-h-screen flex flex-col items-center justify-center px-4 py-12 z-10">
+        <!-- Floating badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-deepRose font-medium text-sm mb-6 shadow-sm animate-bounce">
+            <i class="fa-solid fa-seedling"></i> A Magical Garden Dedicated To You
+        </div>
+
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-center text-romanticText max-w-4xl leading-tight mb-4">
+            Happy Birthday, <span class="text-deepRose italic">Iman Nabeela</span> <span class="inline-block animate-pulse">✨</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-600 text-center max-w-2xl mb-10 font-light">
+            Step into our private sanctuary of memories, love notes, and magical moments we've shared together.
+        </p>
+
+        <!-- Interactive Envelope Letter Component -->
+        <div class="w-full max-w-md mx-auto mb-10 cursor-pointer group" onclick="toggleEnvelope(this)">
+            <div id="envelope" class="envelope relative bg-roseBlush/60 rounded-2xl p-6 glass-card shadow-xl transition-all duration-500 group-hover:shadow-2xl">
+                <!-- Envelope Flap (Visual) -->
+                <div class="text-center py-4">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-deepRose/20 flex items-center justify-center text-deepRose text-2xl mb-3 shadow-inner group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-envelope-open-text"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl text-romanticText mb-1">A Letter For Iman</h3>
+                    <p class="text-xs text-gray-500 font-sans tracking-wide">Click to open your special birthday letter</p>
+                </div>
+                <!-- Hidden Letter Content Modal / Drawer -->
+                <div id="letter-content" class="hidden mt-4 p-6 bg-white/90 rounded-xl shadow-inner border border-rose-100 text-left font-hand text-xl text-gray-700 leading-relaxed transition-all">
+                    <p class="mb-3 text-deepRose font-bold font-serif text-lg">My Dearest Iman Nabeela,</p>
+                    <p class="mb-3">
+                        Today isn't just the celebration of the day you were born; it’s a celebration of the absolute best thing that ever happened to my world. Your smile brightens my darkest days, and your heart is the safest home I've ever known.
+                    </p>
+                    <p class="mb-3">
+                        As you walk through this digital garden we built just for you, I hope you feel every ounce of my love wrapped around you today and always.
+                    </p>
+                    <p class="text-right font-bold text-deepRose">— Forever Yours ❤️</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enter Our Little World Button -->
+        <button onclick="enterGarden()" class="px-8 py-4 bg-gradient-to-r from-deepRose to-pink-400 text-white rounded-full font-medium text-lg shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-3">
+            <span>Enter Our Little World</span>
+            <i class="fa-solid fa-heart text-white/80 animate-pulse"></i>
+        </button>
+    </section>
+
+    <!-- MAIN APP WRAPPER (Hidden until 'Enter' is clicked) -->
+    <div id="main-app" class="hidden opacity-0 transition-opacity duration-1000">
+
+        <!-- Navigation Bar -->
+        <nav class="sticky top-0 z-50 glass-nav py-3 px-6 shadow-sm">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <a href="#opening-section" class="font-serif font-bold text-xl text-deepRose flex items-center gap-2">
+                    <i class="fa-solid fa-spa text-sageGreen"></i> Garden of Memories
+                </a>
+                <div class="hidden md:flex items-center gap-6 text-sm font-medium text-romanticText">
+                    <a href="#gallery" class="hover:text-deepRose transition-colors">Memories Gallery</a>
+                    <a href="#timeline" class="hover:text-deepRose transition-colors">Our Journey</a>
+                    <a href="#reasons" class="hover:text-deepRose transition-colors">Why I Love You</a>
+                    <a href="#letters" class="hover:text-deepRose transition-colors">Love Letters</a>
+                    <a href="#playlist" class="hover:text-deepRose transition-colors">Playlist</a>
+                    <a href="#flower-garden" class="hover:text-deepRose transition-colors">Virtual Garden</a>
+                    <a href="#birthday-cake" class="hover:text-deepRose transition-colors">Birthday Cake</a>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button onclick="playBgmToggle()" id="bgm-btn" aria-label="Play background music" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-deepRose hover:scale-110 transition-transform shadow-sm" title="Play background music">
+                        <i class="fa-solid fa-music" id="music-icon"></i>
+                    </button>
+                    <!-- Mobile Menu Toggle -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden w-10 h-10 rounded-full glass-card flex items-center justify-center text-deepRose">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Navigation Drawer -->
+            <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2 px-2 flex flex-col gap-3 text-center border-t border-gray-200 mt-3">
+                <a href="#gallery" onclick="toggleMobileMenu()" class="py-2 hover:bg-rose-50 rounded-lg text-romanticText">Memories Gallery</a>
+                <a href="#timeline" onclick="toggleMobileMenu()" class="py-2 hover:bg-rose-50 rounded-lg text-romanticText">Our Journey</a>
+                <a href="#reasons" onclick="toggleMobileMenu()" class="py-2 hover:bg-rose-50 rounded-lg text-romanticText">Why I Love You</a>
+                <a href="#letters" onclick="toggleMobileMenu()" class="py-2 hover:bg-rose-50 rounded-lg text-romanticText">Love Letters</a>
+                <a href="#playlist" onclick="toggleMobileMenu()" class="py-2 hover:bg-rose-50 rounded-lg text-romanticText">Playlist</a>
+                <a href="#flower-garden" onclick="toggleMobileMenu()" class="py-2 hover:bg-rose-50 rounded-lg text-romanticText">Virtual Garden</a>
+                <a href="#birthday-cake" onclick="toggleMobileMenu()" class="py-2 hover:bg-rose-50 rounded-lg text-romanticText">Birthday Cake</a>
+            </div>
+        </nav>
+
+        <!-- 2. OUR MEMORIES — INTERACTIVE ART GALLERY -->
+        <section id="gallery" class="py-20 px-4 max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-deepRose font-medium uppercase tracking-widest text-xs">Exhibition Room I</span>
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-romanticText mt-2 mb-4">Our Memories Art Gallery</h2>
+                <p class="text-gray-600 font-light">Framed snapshots of our greatest adventures, quietest joys, and milestone moments together.</p>
+            </div>
+
+            <!-- Masonry / Polaroid Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- Gallery Item 1 with Video -->
+                <div class="glass-card p-4 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer" onclick="openVideoLightbox('D8qJNJFUTsw', 'Our First Meet and flower bouquet 💐', 'April 27, 2026 — Where magic began over my academic transcript and your beauty.')">
+                    <div class="overflow-hidden rounded-xl mb-4 aspect-[4/5] bg-black relative flex items-center justify-center group">
+                        <!-- Thumbnail or Video Preview Placeholder -->
+                        <img src="https://lh3.googleusercontent.com/d/1OS8Hl-yHosGxPN5fAFRbX74VjeM2vB0c" alt="Memory 1 Video" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <!-- Play Icon Overlay -->
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/20 transition-colors">
+                            <div class="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center shadow-lg text-deepRose pl-0.5">
+                                ▶
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-2">
+                        <span class="text-xs text-deepRose font-semibold uppercase tracking-wider">Video Memory</span>
+                        <h4 class="font-serif font-bold text-lg text-romanticText mt-1">Our First Meet and Date</h4>
+                        <p class="text-xs text-gray-500 mt-1">Click to play video memory</p>
+                    </div>
+                </div>
+                <!-- Gallery Item 2 -->
+                <div class="glass-card p-4 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer" onclick="openDriveVideoLightbox('https://drive.google.com/file/d/1pYyuz6vDShnNXHCKKuQn-XxJ6VKE_oaZ/preview', 'Golden Hour Stroll 🌅', 'August 3, 2026 — Walking along the beach as the sun kissed the ocean.')">
+                    <div class="overflow-hidden rounded-xl mb-4 aspect-[4/5] bg-black relative flex items-center justify-center">
+                        <img src="https://drive.google.com/thumbnail?id=1mw3iPwFGNvMOwaVaHCKcZ11JISjEUXtk&amp;sz=w1200" alt="Memory 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/20 transition-colors">
+                            <div class="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center shadow-lg text-deepRose pl-0.5">▶</div>
+                        </div>
+                    </div>
+                    <div class="px-2">
+                        <span class="text-xs text-deepRose font-semibold uppercase tracking-wider">Video Memory</span>
+                        <h4 class="font-serif font-bold text-lg text-romanticText mt-1">Sunset Stroll by the Sea</h4>
+                        <p class="text-xs text-gray-500 mt-1">Click to play video memory</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="glass-card p-4 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer" onclick="openDriveVideoLightbox('https://drive.google.com/file/d/1utaf6Zic2-_0aAXwv1Q_KqQWYu-5M4W7/preview', 'Late Night Stargazing ✨', 'August 28, 2026 — Whispering dreams under a canopy of billion stars with taco ofc hehe.')">
+                    <div class="overflow-hidden rounded-xl mb-4 aspect-[4/5] bg-black relative flex items-center justify-center">
+                        <img src="https://drive.google.com/thumbnail?id=1Vrv5biodo1UJ37_3n3fft9IMHYEssS67&amp;sz=w1200" alt="Memory 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/20 transition-colors">
+                            <div class="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center shadow-lg text-deepRose pl-0.5">▶</div>
+                        </div>
+                    </div>
+                    <div class="px-2">
+                        <span class="text-xs text-deepRose font-semibold uppercase tracking-wider">Video Memory</span>
+                        <h4 class="font-serif font-bold text-lg text-romanticText mt-1">Stargazing Under the Stars</h4>
+                        <p class="text-xs text-gray-500 mt-1">Click to play video memory</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div class="glass-card p-4 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer" onclick="openDriveVideoLightbox('https://drive.google.com/file/d/1dMK5OkeJZeUsi0n8sfCF4ZpvEqccVgq-/preview', 'Yayang got her plushiee 🐧', 'August 29, 2026 — Sir Mikii comelll.')">
+                    <div class="overflow-hidden rounded-xl mb-4 aspect-[4/5] bg-black relative flex items-center justify-center">
+                        <img src="https://drive.google.com/thumbnail?id=1cyCIdqOkQdZSrarJkbSyw6WWiCK7MFL0&amp;sz=w1200" alt="Memory 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/20 transition-colors">
+                            <div class="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center shadow-lg text-deepRose pl-0.5">▶</div>
+                        </div>
+                    </div>
+                    <div class="px-2">
+                        <span class="text-xs text-deepRose font-semibold uppercase tracking-wider">Video Memory</span>
+                        <h4 class="font-serif font-bold text-lg text-romanticText mt-1">Iman’s Special Birthday</h4>
+                        <p class="text-xs text-gray-500 mt-1">Click to play video memory</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 5 -->
+                <div class="glass-card p-4 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer" onclick="openDriveVideoLightbox('https://drive.google.com/file/d/1wYCl_nxU9A_RsfzK_qidPwlCFkR8gN_d/preview', 'Endless Date with yayangg 🍿', 'I love all of our dates with you yayanggg')">
+                    <div class="overflow-hidden rounded-xl mb-4 aspect-[4/5] bg-black relative flex items-center justify-center">
+                        <img src="https://drive.google.com/thumbnail?id=1-Nomf1DzWPMaiobsA_uaIkHdYi9-sMxH&amp;sz=w1200" alt="Memory 5" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/20 transition-colors">
+                            <div class="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center shadow-lg text-deepRose pl-0.5">▶</div>
+                        </div>
+                    </div>
+                    <div class="px-2">
+                        <span class="text-xs text-deepRose font-semibold uppercase tracking-wider">Video Memory</span>
+                        <h4 class="font-serif font-bold text-lg text-romanticText mt-1">Cozy Rainy Movie Night</h4>
+                        <p class="text-xs text-gray-500 mt-1">Click to play video memory</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 -->
+                <div class="glass-card p-4 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer" onclick="openDriveVideoLightbox('https://drive.google.com/file/d/1ZXTEZJu0Y6_fvktp2ibS2KrrZTUv-9Yn/preview', 'Our first LDR datee 🚗', 'October 10, 2024 — Enjoying each other company while surviving LDR.')">
+                    <div class="overflow-hidden rounded-xl mb-4 aspect-[4/5] bg-black relative flex items-center justify-center">
+                        <img src="https://drive.google.com/thumbnail?id=1Fasck1q2VpFY_YhfIdIVSTX-5v6OPs5c&amp;sz=w1200" alt="Memory 6" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/20 transition-colors">
+                            <div class="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center shadow-lg text-deepRose pl-0.5">▶</div>
+                        </div>
+                    </div>
+                    <div class="px-2">
+                        <span class="text-xs text-deepRose font-semibold uppercase tracking-wider">Video Memory</span>
+                        <h4 class="font-serif font-bold text-lg text-romanticText mt-1">Spontaneous Road Trip</h4>
+                        <p class="text-xs text-gray-500 mt-1">Click to play video memory</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Showcase Placeholder -->
+            <div class="glass-card p-6 md:p-10 rounded-3xl shadow-xl max-w-4xl mx-auto">
+                <div class="text-center mb-6">
+                    <span class="text-xs font-semibold text-deepRose uppercase tracking-wider">Exhibition Film Room</span>
+                    <h3 class="font-serif font-bold text-2xl text-romanticText mt-1">Our Cinematic Highlight</h3>
+                    <p class="text-xs text-gray-500">A little highlight from our favorite memories.</p>
+                </div>
+                <div class="w-full max-w-sm mx-auto aspect-[9/16] rounded-2xl overflow-hidden shadow-inner bg-black relative">
+                    <iframe id="showcase-video" class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/VbuHkc1HcUg?autoplay=1&mute=1&playsinline=1&enablejsapi=1" title="Our Cinematic Highlight" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <button type="button" onclick="playVideoWithSound('showcase-video')" class="mt-4 px-5 py-2 rounded-full bg-deepRose text-white hover:bg-pink-600 transition-colors">Play with sound</button>
+            </div>
+        </section>
+
+        <!-- 3. ROMANTIC FEATURES SECTION -->
+
+        <!-- Our Timeline -->
+        <section id="timeline" class="py-20 px-4 max-w-5xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-deepRose font-medium uppercase tracking-widest text-xs">Our Journey</span>
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-romanticText mt-2 mb-4">Milestones of Us</h2>
+                <p class="text-gray-600 font-light">Every step we’ve taken has brought us closer to this beautiful day.</p>
+            </div>
+
+            <div class="relative border-l-2 border-rose-200 ml-4 md:ml-32 space-y-12">
+                <!-- Timeline Event 1 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-deepRose border-4 border-white shadow-md group-hover:scale-125 transition-transform"></div>
+                    <div class="glass-card p-6 rounded-2xl shadow-md">
+                        <span class="text-xs font-bold text-deepRose uppercase tracking-wider">The Beginning</span>
+                        <h3 class="font-serif font-bold text-xl text-romanticText mt-1">When Our Eyes First Met</h3>
+                        <p class="text-xs text-gray-400 mb-3">February to April 2026</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">The month that we both dont know, by coming into each other's lives at the perfect time.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Event 2 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-deepRose border-4 border-white shadow-md group-hover:scale-125 transition-transform"></div>
+                    <div class="glass-card p-6 rounded-2xl shadow-md">
+                        <span class="text-xs font-bold text-deepRose uppercase tracking-wider">Official Milestone</span>
+                        <h3 class="font-serif font-bold text-xl text-romanticText mt-1">Your first time calling me Sayangg</h3>
+                        <p class="text-xs text-gray-400 mb-3">18 April 2026</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">The day we decided to officially embark on this beautiful relationship journey together, hand in hand.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Event 3 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-deepRose border-4 border-white shadow-md group-hover:scale-125 transition-transform"></div>
+                    <div class="glass-card p-6 rounded-2xl shadow-md">
+                        <span class="text-xs font-bold text-deepRose uppercase tracking-wider">Unforgettable Meet</span>
+                        <h3 class="font-serif font-bold text-xl text-romanticText mt-1">Our First Face to face meet</h3>
+                        <p class="text-xs text-gray-400 mb-3">28 April 2026</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">Its funny because our first date is McDonald's and I cried while driving home</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Event 4 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-deepRose border-4 border-white shadow-md group-hover:scale-125 transition-transform"></div>
+                    <div class="glass-card p-6 rounded-2xl shadow-md">
+                        <span class="text-xs font-bold text-deepRose uppercase tracking-wider">Unexpected Turn</span>
+                        <h3 class="font-serif font-bold text-xl text-romanticText mt-1">Your internship placement</h3>
+                        <p class="text-xs text-gray-400 mb-3">12 July 2026</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">Life's unexpected turns can lead to the most beautiful destinations.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Event 5 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-deepRose border-4 border-white shadow-md group-hover:scale-125 transition-transform"></div>
+                    <div class="glass-card p-6 rounded-2xl shadow-md">
+                        <span class="text-xs font-bold text-deepRose uppercase tracking-wider">Today</span>
+                        <h3 class="font-serif font-bold text-xl text-romanticText mt-1">Happy Birthday, Sayang!</h3>
+                        <p class="text-xs text-gray-400 mb-3">12 November 2026</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">Thank you for being the most amazing person I know. Your presence in my life makes every day brighter.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reasons I Love You -->
+        <section id="reasons" class="py-20 px-4 max-w-4xl mx-auto text-center">
+            <span class="text-deepRose font-medium uppercase tracking-widest text-xs">Endless Reasons</span>
+            <h2 class="text-3xl md:text-5xl font-serif font-bold text-romanticText mt-2 mb-4">Why I Love You, Iman</h2>
+            <p class="text-gray-600 font-light mb-12">Click the card below to reveal another reason why you mean the world to me.</p>
+
+            <div class="glass-card p-8 md:p-12 rounded-3xl shadow-xl min-h-[250px] flex flex-col items-center justify-center relative cursor-pointer group" onclick="nextReason()">
+                <div class="absolute top-4 right-4 text-xs font-semibold text-deepRose bg-rose-100 px-3 py-1 rounded-full">
+                    Reason <span id="reason-index">1</span> of 6
+                </div>
+                <div class="text-4xl text-deepRose mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <p id="reason-text" class="font-serif text-xl md:text-2xl text-romanticText leading-relaxed px-4">
+                    "I love the way your eyes light up when you talk about your passions."
+                </p>
+                <div class="mt-8 text-xs text-gray-400 font-sans tracking-wide">Click to reveal next reason ✨</div>
+            </div>
+        </section>
+
+        <!-- Love Letters -->
+        <section id="letters" class="py-20 px-4 max-w-5xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-deepRose font-medium uppercase tracking-widest text-xs">Handwritten Notes</span>
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-romanticText mt-2 mb-4">Digital Love Letters</h2>
+                <p class="text-gray-600 font-light">Sealed with affection, written straight from my heart to yours.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Letter 1 -->
+                <div class="glass-card p-8 rounded-3xl shadow-lg relative transform hover:-translate-y-2 transition-transform duration-300">
+                    <div class="text-deepRose text-2xl mb-4"><i class="fa-solid fa-feather"></i></div>
+                    <h4 class="font-serif font-bold text-xl text-romanticText mb-2">When You Smile</h4>
+                    <p class="font-hand text-xl text-gray-700 leading-relaxed">
+                        "Your smile is absolute sunshine on my cloudiest days. Whenever things get tough, just knowing I get to see you smile makes everything okay."
+                    </p>
+                </div>
+                <!-- Letter 2 -->
+                <div class="glass-card p-8 rounded-3xl shadow-lg relative transform hover:-translate-y-2 transition-transform duration-300">
+                    <div class="text-deepRose text-2xl mb-4"><i class="fa-solid fa-feather"></i></div>
+                    <h4 class="font-serif font-bold text-xl text-romanticText mb-2">Your Kind Heart</h4>
+                    <p class="font-hand text-xl text-gray-700 leading-relaxed">
+                        "The way you care for everyone around you with such gentle empathy inspires me to be a better person every single day. You are pure magic."
+                    </p>
+                </div>
+                <!-- Letter 3 -->
+                <div class="glass-card p-8 rounded-3xl shadow-lg relative transform hover:-translate-y-2 transition-transform duration-300">
+                    <div class="text-deepRose text-2xl mb-4"><i class="fa-solid fa-feather"></i></div>
+                    <h4 class="font-serif font-bold text-xl text-romanticText mb-2">My Safe Haven</h4>
+                    <p class="font-hand text-xl text-gray-700 leading-relaxed">
+                        "With you, I never have to pretend. I can just be completely myself. Thank you for being my greatest comfort and my favorite adventure."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Background Music -->
+        <section id="playlist" class="py-20 px-4 max-w-3xl mx-auto">
+            <div class="glass-card p-8 md:p-12 rounded-3xl shadow-xl">
+                <div class="text-center mb-8">
+                    <span class="text-xs font-semibold text-deepRose uppercase tracking-wider">Soundtrack of Us</span>
+                    <h3 class="font-serif font-bold text-3xl text-romanticText mt-1">A Birthday Soundtrack</h3>
+                    <p class="text-xs text-gray-500 mt-1">A song for Iman, shared just for this celebration.</p>
+                </div>
+
+                <div class="soundtrack-player">
+                    <audio id="bgm-audio" controls loop preload="auto" aria-label="Birthday background music">
+                        <source src="assets/birthday-soundtrack.mp3" type="audio/mpeg">
+                        Your browser does not support audio playback.
+                    </audio>
+                </div>
+                <p id="music-status" class="mt-4 text-center text-sm text-gray-500" aria-live="polite">Enable music to start the birthday soundtrack.</p>
+                <p class="mt-2 text-center text-sm text-gray-500">
+                    <a href="https://drive.google.com/file/d/1yJ-ThuF0YoCt575rtvmiORVFQ_KzgByA/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="text-deepRose underline hover:text-pink-700">Open the soundtrack in Google Drive</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Virtual Flower Garden -->
+        <section id="flower-garden" class="py-20 px-4 max-w-5xl mx-auto text-center">
+            <span class="text-deepRose font-medium uppercase tracking-widest text-xs">Interactive Flora</span>
+            <h2 class="text-3xl md:text-5xl font-serif font-bold text-romanticText mt-2 mb-4">Virtual Flower Garden</h2>
+            <p class="text-gray-600 font-light mb-6">Choose each flower to make it bloom and release heart particles for Iman!</p>
+            <p id="garden-progress" class="text-sm text-deepRose mb-8" aria-live="polite">0 of 4 flowers in bloom</p>
+
+            <div id="flower-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+                <!-- Flower 1 -->
+                <button type="button" aria-pressed="false" onclick="bloomFlower(this)" class="flower-card glass-card p-6 rounded-3xl shadow-md cursor-pointer hover:shadow-xl transition-all duration-300 flex flex-col items-center group w-full">
+                    <div class="w-16 h-16 rounded-full bg-rose-100 flex items-center justify-center text-3xl text-deepRose mb-3 group-hover:scale-125 transition-transform flower-icon">
+                        🌱
+                    </div>
+                    <h4 class="font-serif font-bold text-sm text-romanticText">Rose of Affection</h4>
+                    <span class="flower-prompt text-xs text-gray-400 mt-1">Tap to bloom</span>
+                </button>
+                <!-- Flower 2 -->
+                <button type="button" aria-pressed="false" onclick="bloomFlower(this)" class="flower-card glass-card p-6 rounded-3xl shadow-md cursor-pointer hover:shadow-xl transition-all duration-300 flex flex-col items-center group w-full">
+                    <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center text-3xl text-purple-600 mb-3 group-hover:scale-125 transition-transform flower-icon">
+                        🌱
+                    </div>
+                    <h4 class="font-serif font-bold text-sm text-romanticText">Lavender Dreams</h4>
+                    <span class="flower-prompt text-xs text-gray-400 mt-1">Tap to bloom</span>
+                </button>
+                <!-- Flower 3 -->
+                <button type="button" aria-pressed="false" onclick="bloomFlower(this)" class="flower-card glass-card p-6 rounded-3xl shadow-md cursor-pointer hover:shadow-xl transition-all duration-300 flex flex-col items-center group w-full">
+                    <div class="w-16 h-16 rounded-full bg-pink-100 flex items-center justify-center text-3xl text-pink-500 mb-3 group-hover:scale-125 transition-transform flower-icon">
+                        🌱
+                    </div>
+                    <h4 class="font-serif font-bold text-sm text-romanticText">Tulip of Joy</h4>
+                    <span class="flower-prompt text-xs text-gray-400 mt-1">Tap to bloom</span>
+                </button>
+                <!-- Flower 4 -->
+                <button type="button" aria-pressed="false" onclick="bloomFlower(this)" class="flower-card glass-card p-6 rounded-3xl shadow-md cursor-pointer hover:shadow-xl transition-all duration-300 flex flex-col items-center group w-full">
+                    <div class="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center text-3xl text-amber-600 mb-3 group-hover:scale-125 transition-transform flower-icon">
+                        🌱
+                    </div>
+                    <h4 class="font-serif font-bold text-sm text-romanticText">Sunflower Hope</h4>
+                    <span class="flower-prompt text-xs text-gray-400 mt-1">Tap to bloom</span>
+                </button>
+            </div>
+            <div id="flower-surprise" class="flower-surprise hidden" role="dialog" aria-modal="true" aria-label="A special flower garden surprise" onclick="if (event.target === this) closeFlowerSurprise()">
+                <div class="flower-surprise-card">
+                    <button type="button" class="flower-surprise-close" aria-label="Close surprise" onclick="closeFlowerSurprise()">×</button>
+                    <img src="https://drive.google.com/thumbnail?id=1LtWricXerFVDOQy9x3duo_uz8CSwPEeH&amp;sz=w1200" alt="A special bouquet surprise for Iman">
+                </div>
+            </div>
+            <div id="finale-surprise" class="flower-surprise hidden" role="dialog" aria-modal="true" aria-label="Celebrate Us surprise" onclick="if (event.target === this) closeFinaleSurprise()">
+                <div class="flower-surprise-card finale-surprise-card">
+                    <button type="button" class="flower-surprise-close" aria-label="Close surprise" onclick="closeFinaleSurprise()">×</button>
+                    <div class="flower-surprise-video-frame">
+                        <iframe class="flower-surprise-video" src="https://drive.google.com/file/d/1VIyst1ou96NQU_KATfHyKfsC9jVRugK1/preview" title="A special Celebrate Us video surprise" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            <button type="button" onclick="resetGarden()" class="mt-8 px-5 py-2 rounded-full border border-rose-200 text-deepRose hover:bg-rose-50 transition-colors">Reset garden</button>
+        </section>
+
+        <!-- Birthday Cake & Candles -->
+        <section id="birthday-cake" class="py-20 px-4 max-w-4xl mx-auto text-center">
+            <span class="text-deepRose font-medium uppercase tracking-widest text-xs">Birthday Celebration</span>
+            <h2 class="text-3xl md:text-5xl font-serif font-bold text-romanticText mt-2 mb-4">Make a Wish, Iman!</h2>
+            <p class="text-gray-600 font-light mb-6">Tap each candle or blow them all out together to make a wish!</p>
+            <p id="cake-message" class="text-sm text-deepRose mb-8" aria-live="polite">3 candles are glowing. Make a wish!</p>
+
+            <div class="glass-card p-10 rounded-3xl shadow-xl max-w-md mx-auto flex flex-col items-center">
+                <!-- Cake & Animated Flames -->
+                <div class="relative mb-8">
+                    <!-- Candles -->
+                    <div class="flex justify-center gap-4 mb-2">
+                        <button type="button" aria-label="Blow out candle 1" aria-pressed="false" class="birthday-candle flex flex-col items-center cursor-pointer border-0 bg-transparent p-0">
+                            <div class="candle-flame w-4 h-6 bg-amber-400 rounded-full animate-pulse shadow-[0_0_15px_#f59e0b]"></div>
+                            <div class="w-2 h-10 bg-white border border-rose-200 rounded-sm"></div>
+                        </button>
+                        <button type="button" aria-label="Blow out candle 2" aria-pressed="false" class="birthday-candle flex flex-col items-center cursor-pointer border-0 bg-transparent p-0">
+                            <div class="candle-flame w-4 h-6 bg-amber-400 rounded-full animate-pulse shadow-[0_0_15px_#f59e0b]"></div>
+                            <div class="w-2 h-10 bg-white border border-rose-200 rounded-sm"></div>
+                        </button>
+                        <button type="button" aria-label="Blow out candle 3" aria-pressed="false" class="birthday-candle flex flex-col items-center cursor-pointer border-0 bg-transparent p-0">
+                            <div class="candle-flame w-4 h-6 bg-amber-400 rounded-full animate-pulse shadow-[0_0_15px_#f59e0b]"></div>
+                            <div class="w-2 h-10 bg-white border border-rose-200 rounded-sm"></div>
+                        </button>
+                    </div>
+                    <!-- Cake Top Tier -->
+                    <div class="w-32 h-16 bg-rose-200 rounded-t-xl mx-auto border-b-2 border-rose-300 shadow-inner"></div>
+                    <!-- Cake Bottom Tier -->
+                    <div class="w-48 h-20 bg-pink-300 rounded-xl mx-auto shadow-md flex items-center justify-center text-white font-serif font-bold text-lg">
+                        Iman Nabeela
+                    </div>
+                </div>
+
+                <button id="cake-action" type="button" onclick="blowAllCandles()" class="px-6 py-3 bg-deepRose text-white rounded-full font-medium shadow-md hover:bg-pink-600 transition-colors">
+                    Blow Out All Candles 🎂
+                </button>
+            </div>
+        </section>
+
+        <!-- Hidden Surprise Easter Egg Section -->
+        <section class="py-12 px-4 max-w-2xl mx-auto text-center">
+            <div class="glass-card p-6 rounded-2xl border-dashed border-2 border-rose-300">
+                <h4 class="font-serif font-bold text-lg text-romanticText mb-2">🔍 Secret Easter Egg Unlocked!</h4>
+                <p class="text-sm text-gray-600 mb-4">You found the secret surprise note! Did you know every time you laugh, my entire world becomes brighter? Happy Birthday to my favorite person.</p>
+            </div>
+        </section>
+
+        <!-- 6. FINAL SURPRISE: 'TO MANY MORE MEMORIES' -->
+        <section class="py-28 px-4 text-center bg-gradient-to-t from-roseBlush/40 to-transparent">
+            <div class="max-w-3xl mx-auto glass-card p-10 md:p-16 rounded-3xl shadow-2xl relative overflow-hidden">
+                <span class="text-xs font-semibold text-deepRose uppercase tracking-widest">Exhibition Finale</span>
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-romanticText mt-3 mb-6">To Many More Memories</h2>
+                <p class="text-lg text-gray-700 font-light leading-relaxed mb-8">
+                    Iman Nabeela, thank you for filling my life with so much grace, joy, and unconditional love. This art gallery of our memories is only the beginning. Here is to a lifetime of adventures, laughter, and holding hands through every season.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button onclick="triggerGrandFinale()" class="px-8 py-4 bg-deepRose text-white rounded-full font-medium text-lg shadow-lg hover:scale-105 transition-transform">
+                        Celebrate Us 🎉
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer / Instructions for Google Sites & Customization -->
+        <footer class="py-12 px-6 glass-nav text-center text-xs text-gray-500 border-t border-rose-100">
+            <div class="max-w-4xl mx-auto space-y-4">
+                <p class="font-serif text-sm text-romanticText font-semibold">A Garden of Memories — Dedicated with all my love to Iman Nabeela</p>
+                <p>Designed for Google Sites embedding. To customize: replace image URLs in the Gallery section with your own photo links, update the text notes, and publish!</p>
+                <p class="text-gray-400">&copy; 2026 Romantic Digital Exhibition. All rights reserved.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4" onclick="closeLightbox()">
+        <div class="glass-card max-w-2xl w-full p-6 rounded-3xl relative text-center" onclick="event.stopPropagation()">
+            <button onclick="closeLightbox()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-rose-100 text-deepRose flex items-center justify-center hover:scale-110 transition-transform">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <img id="lightbox-img" src="" alt="Enlarged Memory" class="w-full max-h-[60vh] object-contain rounded-2xl mb-4 shadow-md bg-gray-50">
+            <iframe id="lightbox-video" class="hidden w-full aspect-video rounded-2xl mb-4 shadow-md bg-black" src="" title="" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            <button id="lightbox-play-sound" type="button" onclick="playVideoWithSound('lightbox-video')" class="hidden mb-4 px-5 py-2 rounded-full bg-deepRose text-white hover:bg-pink-600 transition-colors">Play with sound</button>
+            <h3 id="lightbox-title" class="font-serif font-bold text-2xl text-romanticText mb-2"></h3>
+            <p id="lightbox-desc" class="text-gray-600 text-sm"></p>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Floating Petals & Butterflies generator
+        function initNatureParticles() {
+            const container = document.getElementById('nature-particles');
+            const particleCount = 20;
+            for (let i = 0; i < particleCount; i++) {
+                const petal = document.createElement('div');
+                petal.classList.add('floating-petal');
+                const size = Math.random() * 10 + 8;
+                petal.style.width = `${size}px`;
+                petal.style.height = `${size * 1.5}px`;
+                petal.style.left = `${Math.random() * 100}vw`;
+                petal.style.top = `-10vh`;
+                petal.style.animationDuration = `${Math.random() * 8 + 6}s`;
+                petal.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(petal);
+            }
+        }
+        window.addEventListener('DOMContentLoaded', initNatureParticles);
+
+        // Envelope toggle animation
+        function toggleEnvelope(el) {
+            el.classList.toggle('open');
+            const letter = document.getElementById('letter-content');
+            if (el.classList.contains('open')) {
+                letter.classList.remove('hidden');
+                confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } });
+            } else {
+                letter.classList.add('hidden');
+            }
+        }
+
+        // Enter Garden Entry Transition
+        function enterGarden() {
+            const opening = document.getElementById('opening-section');
+            const mainApp = document.getElementById('main-app');
+
+            opening.style.transition = 'opacity 0.8s ease-in-out';
+            opening.style.opacity = '0';
+            setTimeout(() => {
+                opening.classList.add('hidden');
+                mainApp.classList.remove('hidden');
+                setTimeout(() => {
+                    mainApp.classList.remove('opacity-0');
+                }, 50);
+            }, 800);
+
+            confetti({
+                particleCount: 150,
+                spread: 90,
+                origin: { y: 0.5 },
+                colors: ['#fbe4e9', '#d4839c', '#ece5f2', '#d8e2dc', '#f59e0b']
+            });
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Lightbox Handler
+        function openLightbox(imgSrc, title, desc) {
+            const image = document.getElementById('lightbox-img');
+            const video = document.getElementById('lightbox-video');
+            document.getElementById('lightbox-play-sound').classList.add('hidden');
+            video.src = '';
+            video.classList.add('hidden');
+            image.classList.remove('hidden');
+            image.src = imgSrc;
+            document.getElementById('lightbox-title').textContent = title;
+            document.getElementById('lightbox-desc').textContent = desc;
+            document.getElementById('lightbox').classList.remove('hidden');
+        }
+        function openVideoLightbox(videoId, title, desc) {
+            const image = document.getElementById('lightbox-img');
+            const video = document.getElementById('lightbox-video');
+            image.classList.add('hidden');
+            video.title = title;
+            video.src = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}?autoplay=1&mute=1&playsinline=1&enablejsapi=1`;
+            video.classList.remove('hidden');
+            document.getElementById('lightbox-play-sound').classList.remove('hidden');
+            document.getElementById('lightbox-title').textContent = title;
+            document.getElementById('lightbox-desc').textContent = desc;
+            document.getElementById('lightbox').classList.remove('hidden');
+        }
+        function openDriveVideoLightbox(videoUrl, title, desc) {
+            const image = document.getElementById('lightbox-img');
+            const video = document.getElementById('lightbox-video');
+            image.classList.add('hidden');
+            video.title = title;
+            video.src = videoUrl;
+            video.classList.remove('hidden');
+            document.getElementById('lightbox-play-sound').classList.add('hidden');
+            document.getElementById('lightbox-title').textContent = title;
+            document.getElementById('lightbox-desc').textContent = desc;
+            document.getElementById('lightbox').classList.remove('hidden');
+        }
+        function playVideoWithSound(playerId) {
+            const player = document.getElementById(playerId);
+            if (!player.contentWindow) return;
+
+            player.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
+            player.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+        }
+        function closeLightbox() {
+            const video = document.getElementById('lightbox-video');
+            video.src = '';
+            video.classList.add('hidden');
+            document.getElementById('lightbox-play-sound').classList.add('hidden');
+            document.getElementById('lightbox-img').classList.remove('hidden');
+            document.getElementById('lightbox').classList.add('hidden');
+        }
+
+        // Reasons I Love You Carousel
+        const reasonsList = [
+            "I love the way your eyes light up when you talk about your passions.",
+            "I love how safe and understood I feel whenever I am wrapped in your arms.",
+            "I love your infectious laugh that instantly makes any bad day disappear.",
+            "I love your thoughtful heart and how deeply you care for the people around you.",
+            "I love how we can talk about everything and nothing for hours on end.",
+            "I love simply watching you be you—magnificent, kind, and breathtaking."
+        ];
+        let currentReasonIdx = 0;
+        function nextReason() {
+            currentReasonIdx = (currentReasonIdx + 1) % reasonsList.length;
+            document.getElementById('reason-text').textContent = `"${reasonsList[currentReasonIdx]}"`;
+            document.getElementById('reason-index').textContent = currentReasonIdx + 1;
+            confetti({ particleCount: 25, spread: 40, origin: { y: 0.7 } });
+        }
+
+        // Background music
+        let isPlaying = false;
+        const bgmAudio = document.getElementById('bgm-audio');
+        document.querySelector('#music-consent button').focus();
+        function showMusicConsent() {
+            const consent = document.getElementById('music-consent');
+            consent.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            consent.querySelector('button').focus();
+        }
+
+        function chooseMusic(enableMusic) {
+            document.getElementById('music-consent').classList.add('hidden');
+            document.body.style.overflow = '';
+            if (enableMusic) {
+                startBackgroundMusic();
+            } else {
+                document.getElementById('music-status').textContent = 'Music is off. Use the music button whenever you are ready.';
+            }
+        }
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && !document.getElementById('music-consent').classList.contains('hidden')) {
+                chooseMusic(false);
+            }
+        });
+        function startBackgroundMusic() {
+            document.getElementById('music-status').textContent = 'Starting the birthday soundtrack...';
+            bgmAudio.play().catch(error => {
+                if (error.name === 'AbortError') return;
+
+                isPlaying = false;
+                updateMusicControls();
+                if (error.name === 'NotAllowedError') {
+                    document.getElementById('music-status').textContent = 'Your browser blocked automatic audio. Enable music to start the birthday soundtrack.';
+                    showMusicConsent();
+                    return;
+                }
+                document.getElementById('music-status').textContent = `Could not play the soundtrack: ${error.message}`;
+            });
+        }
+        function togglePlaySong() {
+            if (bgmAudio.paused) {
+                startBackgroundMusic();
+                return;
+            }
+            bgmAudio.pause();
+        }
+        function playBgmToggle() {
+            togglePlaySong();
+        }
+        function updateMusicControls() {
+            const icon = document.getElementById('music-icon');
+            icon.className = isPlaying ? 'fa-solid fa-music fa-spin' : 'fa-solid fa-music';
+            const button = document.getElementById('bgm-btn');
+            button.title = isPlaying ? 'Pause background music' : 'Play background music';
+            button.setAttribute('aria-label', button.title);
+        }
+        bgmAudio.addEventListener('waiting', () => {
+            document.getElementById('music-status').textContent = 'Loading the birthday soundtrack...';
+        });
+        bgmAudio.addEventListener('playing', () => {
+            isPlaying = true;
+            updateMusicControls();
+            document.getElementById('music-status').textContent = 'The birthday soundtrack is playing.';
+        });
+        bgmAudio.addEventListener('pause', () => {
+            isPlaying = false;
+            updateMusicControls();
+            document.getElementById('music-status').textContent = 'Music paused. Press play to resume.';
+        });
+        bgmAudio.addEventListener('error', () => {
+            isPlaying = false;
+            updateMusicControls();
+            document.getElementById('music-status').textContent = 'Google Drive denied access to the audio. Set General access to “Anyone with the link” (Viewer), then reload this page.';
+        });
+        function celebrate(options) {
+            if (typeof confetti === 'function') {
+                confetti(options);
+            }
+        }
+
+        // Virtual Flower Blooming
+        function bloomFlower(el) {
+            if (el.getAttribute('aria-pressed') === 'true') return;
+
+            const flowers = [...document.querySelectorAll('#flower-garden button[aria-pressed]')];
+            const flowerIndex = flowers.indexOf(el);
+            const icon = el.querySelector('.flower-icon');
+            icon.textContent = ['🌹', '🪻', '🌷', '🌻'][flowerIndex];
+            el.setAttribute('aria-pressed', 'true');
+            el.classList.add('flower-bloomed');
+            el.querySelector('.flower-prompt').textContent = 'In bloom!';
+            const bloomedCount = flowers.filter(flower => flower.getAttribute('aria-pressed') === 'true').length;
+            document.getElementById('garden-progress').textContent = `${bloomedCount} of ${flowers.length} flowers in bloom`;
+            celebrate({ particleCount: 30, spread: 50, origin: { y: 0.8 }, colors: ['#d4839c', '#f4a7bb', '#ffffff'] });
+            if (bloomedCount === flowers.length) {
+                document.getElementById('garden-progress').textContent = 'You bloomed them all! Here is your surprise! 💐';
+                openFlowerSurprise();
+                celebrate({ particleCount: 90, spread: 75, origin: { y: 0.65 }, colors: ['#d4839c', '#f4a7bb', '#ffffff', '#b8c9a8'] });
+            }
+        }
+        function openFlowerSurprise() {
+            const surprise = document.getElementById('flower-surprise');
+            surprise.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            surprise.querySelector('.flower-surprise-close').focus();
+        }
+        function closeFlowerSurprise() {
+            document.getElementById('flower-surprise').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        function openFinaleSurprise() {
+            const surprise = document.getElementById('finale-surprise');
+            surprise.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            surprise.querySelector('.flower-surprise-close').focus();
+        }
+        function closeFinaleSurprise() {
+            document.getElementById('finale-surprise').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') {
+                if (!document.getElementById('finale-surprise').classList.contains('hidden')) {
+                    closeFinaleSurprise();
+                } else if (!document.getElementById('flower-surprise').classList.contains('hidden')) {
+                    closeFlowerSurprise();
+                }
+            }
+        });
+        function resetGarden() {
+            document.querySelectorAll('#flower-garden .flower-card[aria-pressed]').forEach(flower => {
+                flower.setAttribute('aria-pressed', 'false');
+                flower.classList.remove('flower-bloomed');
+                flower.querySelector('.flower-icon').textContent = '🌱';
+                flower.querySelector('.flower-prompt').textContent = 'Tap to bloom';
+            });
+            closeFlowerSurprise();
+            document.getElementById('garden-progress').textContent = '0 of 4 flowers in bloom';
+        }
+
+        // Birthday Cake Candle Blowing
+        let cakeVideoPlayed = false;
+
+        function blowCandle(el) {
+            const flame = el.querySelector('.candle-flame');
+            if (!flame || flame.style.display === 'none') return;
+
+            flame.style.display = 'none';
+            el.setAttribute('aria-pressed', 'true');
+            updateCakeState();
+            celebrate({ particleCount: 35, spread: 55, origin: { y: 0.7 }, colors: ['#f59e0b', '#d4839c', '#ffffff'] });
+        }
+        function toggleCandle(el) {
+            const flame = el.querySelector('.candle-flame');
+            if (flame.style.display === 'none') {
+                flame.style.display = '';
+                el.setAttribute('aria-pressed', 'false');
+                updateCakeState();
+                return;
+            }
+            blowCandle(el);
+        }
+        function blowAllCandles() {
+            const candles = [...document.querySelectorAll('#birthday-cake .birthday-candle')];
+            if (candles.every(candle => candle.getAttribute('aria-pressed') === 'true')) {
+                candles.forEach(candle => {
+                    candle.setAttribute('aria-pressed', 'false');
+                    candle.querySelector('.candle-flame').style.display = '';
+                });
+            } else {
+                candles.forEach(candle => {
+                    candle.setAttribute('aria-pressed', 'true');
+                    candle.querySelector('.candle-flame').style.display = 'none';
+                });
+                celebrate({
+                    particleCount: 120,
+                    spread: 100,
+                    origin: { y: 0.6 },
+                    colors: ['#fbe4e9', '#d4839c', '#f59e0b', '#ffffff']
+                });
+            }
+            updateCakeState();
+        }
+        function updateCakeState() {
+            const candles = [...document.querySelectorAll('#birthday-cake .birthday-candle')];
+            const litCount = candles.filter(candle => candle.getAttribute('aria-pressed') !== 'true').length;
+            const message = document.getElementById('cake-message');
+            const action = document.getElementById('cake-action');
+
+            if (litCount === 0) {
+                message.textContent = 'Wish made! Happy Birthday, Iman! 🎉';
+                action.textContent = 'Light the Candles Again 🕯️';
+            } else {
+                message.textContent = `${litCount} ${litCount === 1 ? 'candle is' : 'candles are'} glowing. Make a wish!`;
+                action.textContent = 'Blow Out All Candles 🎂';
+            }
+            candles.forEach((candle, index) => {
+                candle.setAttribute('aria-label', `${candle.getAttribute('aria-pressed') === 'true' ? 'Light' : 'Blow out'} candle ${index + 1}`);
+            });
+            if (litCount === 0 && !cakeVideoPlayed) {
+                cakeVideoPlayed = true;
+                openVideoLightbox('61JblTRbp6A', 'A Birthday Surprise 🎂', 'A little birthday surprise just for you!');
+            } else if (litCount > 0) {
+                cakeVideoPlayed = false;
+            }
+        }
+        document.querySelectorAll('#birthday-cake .birthday-candle').forEach(candle => {
+            candle.addEventListener('click', () => toggleCandle(candle));
+        });
+
+        // Grand Finale Celebration
+        function triggerGrandFinale() {
+            confetti({
+                particleCount: 200,
+                spread: 120,
+                origin: { y: 0.5 },
+                colors: ['#fbe4e9', '#d4839c', '#ece5f2', '#d8e2dc', '#f59e0b']
+            });
+            openFinaleSurprise();
+        }
+    </script>
+</body>
+</html>
